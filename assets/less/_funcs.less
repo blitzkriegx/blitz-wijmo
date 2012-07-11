@@ -1,0 +1,79 @@
+@import url("_defaults.less");
+
+@fontSizeEmMultiplier : (@fontSizeDefaultPx / 195) + 0em;
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Typeography
+----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.font(@px, @lineHeightBuffer) {
+	font-size   : @px * @fontSizeEmMultiplier + 0em;
+	line-height : (@px + @lineHeightBuffer) * @fontSizeEmMultiplier + 0em;
+}
+
+.font(@px, @family : @fontFamilyDefault, @lineHeightBuffer : 0) {
+	font-family : @family;
+	font-size   : @px * @fontSizeEmMultiplier + 0em;
+	line-height : (@px + @lineHeightBuffer) * @fontSizeEmMultiplier + 0em;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Dimensions
+----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.box(@width) when(isnumber(@width)){
+	width : @width + 0px;
+}
+.box(@width) when not(isnumber(@width)){
+	width : @width;
+}
+
+.box(@width, @height, @overflow: inherit) when(isnumber(@width)) and (isnumber(@height)) {
+	width  : @width + 0px;
+	height : @height + 0px;
+	overflow: @overflow;
+}
+
+.box(@width, @height, @overflow: inherit) when(isstring(@width)) and (isnumber(@height)) {
+	width  : @width;
+	height : @height + 0px;
+	overflow: @overflow;
+}
+
+.box(@width, @height, @overflow: inherit) when(isnumber(@width)) and (isstring(@height)) {
+	width  : @width + 0px;
+	height : @height;
+	overflow: @overflow;
+}
+
+.box(@width, @height, @overflow: inherit) when not(isnumber(@width)) and not (isnumber(@height)) {
+	width  : @width;
+	height : @height;
+	overflow: @overflow;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Positioning
+----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.pos(@top, @right, @bottom, @left) when(isnumber(@top)) and (isnumber(@right)) {
+	.absolute;
+	top   : @top + 0px;
+	right : @right + 0px;
+}
+
+.pos(@top, @right, @bottom, @left) when(isnumber(@top)) and (isnumber(@left)) {
+	.absolute;
+	top  : @top + 0px;
+	left : @left + 0px;
+}
+
+.pos(@top, @right, @bottom, @left) when(isnumber(@bottom)) and (isnumber(@right)) {
+	.absolute;
+	right  : @right + 0px;
+	bottom : @bottom + 0px;
+}
+
+.pos(@top, @right, @bottom, @left) when(isnumber(@bottom)) and (isnumber(@left)) {
+	.absolute;
+	bottom : @bottom + 0px;
+	left   : @left + 0px;
+}
